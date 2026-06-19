@@ -21,10 +21,17 @@ boot path. Doing the connect in pure Python from our own ``main.py``
 is deterministic regardless of that.
 """
 
-# --- EVENT WIFI ---------------------------------------------------------
-# Public broadcast at the venue. Replace for use elsewhere.
-SSID = "cardputer"
-PASSWORD = "cardconnect"
+# --- WIFI CREDENTIALS ---------------------------------------------------
+# Prefer ``secrets.py`` (gitignored, never committed). If that file is
+# absent on the device, fall back to the public event WiFi so the
+# bundle still works at the venue out of the box.
+try:
+    import secrets as _secrets
+    SSID = _secrets.WIFI_SSID
+    PASSWORD = _secrets.WIFI_PASSWORD
+except Exception:
+    SSID = "cardputer"
+    PASSWORD = "cardconnect"
 # -----------------------------------------------------------------------
 
 # How long to wait for an IP before giving up. The venue network is
