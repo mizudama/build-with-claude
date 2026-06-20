@@ -6,3 +6,9 @@ __pycache__/
 .venv/
 venv/
 .env
+
+# Device-local credentials — never commit
+buddy/device/secrets.py
+
+# Claude Code local settings (per-developer)
+.claude/settings.local.json
